@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>test</title>
+
+	<style type="text/css">
+
+		/* header */
+
+		.site-header {
+		  background-color: #fff;
+		  position: fixed;
+		  height: 80px;
+		  width: 100%;
+		  z-index: 3;
+		}
+
+		.site-header ul {
+		  margin: 0;
+		  padding: 0;
+		  list-style: none;
+		  overflow: hidden;
+		  background-color: #fff;
+		}
+
+		.site-header li a {
+		  display: block;
+		  padding: 20px 20px;
+		  text-decoration: none;
+		}
+
+		.site-header .logo {
+		  display: block;
+		  float: left;
+		  font-size: 2em;
+		  padding: 10px 20px;
+		  text-decoration: none;
+		}
+
+
+		/* menu */
+
+		.site-header .nav-list {
+		  clear: both;
+		  max-height: 0;
+		  text-align: center;
+		  transition: max-height .2s ease-out;
+		  position: relative;
+		  top: -7px;
+		}
+
+		/* menu icon */
+
+		.site-header .menu-icon {
+		  cursor: pointer;
+		  display: inline-block;
+		  float: right;
+		  padding: 40px 20px;
+		  position: relative;
+		  user-select: none;
+		}
+
+		.site-header .menu-icon .navicon {
+		  background: #333;
+		  display: block;
+		  height: 2px;
+		  position: relative;
+		  transition: background .2s ease-out;
+		  width: 18px;
+		}
+
+		.site-header .menu-icon .navicon:before,
+		.site-header .menu-icon .navicon:after {
+		  background: #333;
+		  content: '';
+		  display: block;
+		  height: 100%;
+		  position: absolute;
+		  transition: all .2s ease-out;
+		  width: 100%;
+		}
+
+		.site-header .menu-icon .navicon:before {
+		  top: 5px;
+		}
+
+		.site-header .menu-icon .navicon:after {
+		  top: -5px;
+		}
+
+
+		/* menu btn */
+
+		.site-header .menu-btn {
+		  display: none;
+		}
+
+		.site-header .menu-btn:checked~.nav-list {
+		  max-height: 300px;
+		}
+
+		.site-header .menu-btn:checked~.menu-icon .navicon {
+		  background: transparent;
+		}
+
+		.site-header .menu-btn:checked~.menu-icon .navicon:before {
+		  transform: rotate(-45deg);
+		}
+
+		.site-header .menu-btn:checked~.menu-icon .navicon:after {
+		  transform: rotate(45deg);
+		}
+
+		.site-header .menu-btn:checked~.menu-icon:not(.steps) .navicon:before,
+		.site-header .menu-btn:checked~.menu-icon:not(.steps) .navicon:after {
+		  top: 0;
+		}
+
+		@media (min-width: 64em) {
+		  .site-header li {
+		    float: left;
+		  }
+		  .site-header li a {
+		    padding: 30px 30px;
+/*		    padding: 20px 20px;*/
+		  }
+		  .site-header .nav-list {
+		    clear: none;
+		    float: right;
+		    max-height: none;
+		    /*
+			clear: both;
+			max-height: 0;
+		    */
+		  }
+		  .site-header .menu-icon {
+		    display: none;
+/*		    display: inline-block;*/
+		  }
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header">
+
+		<div class="site-name">
+	      <img src="assets/logo.png" alt="logo">
+	      <h1>WorkWise</h1>
+    	</div>
+
+		<input class="menu-btn" type="checkbox" id="menu-btn" />
+		<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+
+		<ul class="nav-list">
+			<li><a href="#" class="nav-link">Pracownicy</a></li>
+			<li><a href="#" class="nav-link">Historia</a></li>
+			<li><a href="#" class="nav-link">Ustawienia</a></li>
+			<li><a href="#" class="nav-link">Logout</a></li>
+		</ul>
+
+	</header>
+</body>
+</html>

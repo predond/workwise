@@ -1,0 +1,86 @@
+Table "pracownik" {
+  "id" int [pk, increment]
+  "imie" varchar(15)
+  "nazwisko" varchar(38)
+  "pesel" int
+  "ulica" varchar(60)
+  "numer_domu" varchar(7)
+  "miasto" varchar(35)
+  "kod_pocztowy" varchar(6)
+  "telefon_kom" varchar(28)
+  "email" varchar(350)
+  "dzial_id" int
+  "szkolenie_id" int
+  "badanie_id" int
+}
+
+Table pracownik_konto {
+  "id" int [pk, increment]
+  "pracownik_id" int [ref: - pracownik.id]
+  "login" varchar(50)
+  "haslo" varchar(30)
+  "rola" int [ref: > role.id]
+}
+
+Table role {
+  "id" int [pk, increment]
+  "nazwa" varchar(25)
+}
+
+Table "dzial" {
+  "id" int [pk, increment]
+  "nazwa" varchar(30)
+  "ilosc_pracownikow" int
+}
+
+Table "szkolenie" {
+  "id" int [pk, increment]
+  "kategoria" int
+  "ukonczone" boolean
+  "prowadzacy_id" int
+  "data_waznosci" datetime
+  "koszt" decimal
+}
+
+Table "szkolenie_kategoria" {
+  "id" int [pk, increment]
+  "nazwa" varchar(50)
+  "priotytet" int
+}
+
+Table "szkolenie_prowadzacy" {
+  "id" int [pk, increment]
+  "pesel" int [unique]
+  "imie" varchar(15)
+  "nazwisko" varchar(38)
+  "numer_licencji" varchar(15)
+}
+
+Table "badanie" {
+  "id" int [pk, increment]
+  "typ_badania" int
+  "lekarz_imie" varchar(15)
+  "lekarz_nazwisko" varchar(38)
+  "data" datetime
+  "koszt" decimal
+}
+
+Table "badanie_typ" {
+  "id" int [pk, increment]
+  "nazwa" varchar(50)
+  "priorytet" int
+}
+
+Ref:"szkolenie_prowadzacy"."pesel" < "pracownik"."pesel"
+
+Ref:"dzial"."id" < "pracownik"."dzial_id"
+
+Ref:"szkolenie"."id" < "pracownik"."szkolenie_id"
+
+Ref:"badanie"."id" < "pracownik"."badanie_id"
+
+Ref:"szkolenie_kategoria"."id" < "szkolenie"."kategoria"
+
+Ref:"szkolenie_prowadzacy"."id" < "szkolenie"."prowadzacy_id"
+
+Ref:"badanie_typ"."id" < "badanie"."typ_badania"
